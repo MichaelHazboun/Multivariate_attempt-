@@ -25,9 +25,9 @@ ui <- fluidPage(
         sidebarPanel(
             sliderInput("outliers",
                         "Number of outliers:",
-                        min = 0,
+                        min = 1,
                         max = 15,
-                        value = 0),
+                        value = 1),
             sliderInput("outliers_magnitude",
                         "How big of an outlier:",
                         min = 0,

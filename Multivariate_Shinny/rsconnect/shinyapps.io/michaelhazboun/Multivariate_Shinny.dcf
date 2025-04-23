@@ -5,6 +5,9 @@ account: michaelhazboun
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 14587794
-bundleId: 10161468
+bundleId: 10165028
 url: https://michaelhazboun.shinyapps.io/Multivariate_Shinny/
 version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: Testing things.R

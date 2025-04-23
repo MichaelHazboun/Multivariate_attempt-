@@ -40,6 +40,7 @@ ui <- fluidPage(
           textOutput("mean"),
           textOutput("median"),
           textOutput("rmean"),
+          textOutput("TrimmedMean"),
            plotOutput("distPlot")
         )
     )
@@ -72,7 +73,7 @@ server <- function(input, output) {
       thing    <- data.frame(x)
       thing$x[(length(thing$x)-input$outliers):length(thing$x)] <- thing$x[(length(thing$x)-input$outliers):length(thing$x)] + input$outliers_magnitude
       r_mean<- huberM(thing$x)
-      paste("A robust mean is: ",r_mean$mu)
+      paste("A robust mean (Huber M-estimator) is: ",r_mean$mu)
     })
     output$median <- renderText({
       x <- c(1,1,2,2,2,3,3,3,4,4,4,4,5,5,5,6,6,6,7,7)  
@@ -80,6 +81,13 @@ server <- function(input, output) {
       thing$x[(length(thing$x)-input$outliers):length(thing$x)] <- thing$x[(length(thing$x)-input$outliers):length(thing$x)] + input$outliers_magnitude
       Median_x<- median(thing$x)
       paste("The median is: ",Median_x)
+    })
+    output$TrimmedMean <- renderText({
+      x <- c(1,1,2,2,2,3,3,3,4,4,4,4,5,5,5,6,6,6,7,7)  
+      thing    <- data.frame(x)
+      thing$x[(length(thing$x)-input$outliers):length(thing$x)] <- thing$x[(length(thing$x)-input$outliers):length(thing$x)] + input$outliers_magnitude
+      Tmean_x<- mean(thing$x,trim = 0.2)
+      paste("A robust mean (Trimmed mean) is: ",Tmean_x)
     })
 }
 
